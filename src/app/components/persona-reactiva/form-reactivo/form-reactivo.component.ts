@@ -35,11 +35,11 @@ export class FormReactivoComponent implements OnInit {
   public edit = false;
   public isError = false;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.onBuild();
   }
 
-  onBuild() {
+  onBuild(): void {
     this.formPersona = this.formBuilder.group({
       id: new FormControl(0),
       nombre: new FormControl('', Validators.required),
@@ -62,7 +62,7 @@ export class FormReactivoComponent implements OnInit {
     }
   }
 
-  add(persona: Persona) {
+  add(persona: Persona): void {
     this.personaService.post(persona).subscribe(
       res => {
         this.calcularPaginas.emit();
@@ -73,7 +73,7 @@ export class FormReactivoComponent implements OnInit {
     );
   }
 
-  update(persona: Persona) {
+  update(persona: Persona): void {
     this.personaService.put(persona.id, persona).subscribe(
       res => {
         alert('Persona fue actualizada con éxito');
@@ -85,11 +85,11 @@ export class FormReactivoComponent implements OnInit {
     );
   }
 
-  onClose() {
+  onClose(): void {
     this.isError = false;
   }
 
-  onCloseAlert() {
+  onCloseAlert(): void {
     this.isError = false;
   }
 

@@ -35,7 +35,7 @@ export class PersonaService {
     return this.http.post<Persona>(this.miUrl, persona);
   }
 
-  put(id: number, persona: Persona) {
+  put(id: number, persona: Persona): Observable<Persona> {
     return this.http.put<Persona>(this.miUrl + id, persona);
   }
 }

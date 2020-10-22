@@ -28,11 +28,11 @@ export class TablaRactivaComponent implements OnInit {
 
   constructor(private personaService: PersonaService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.calcularPaginas();
   }
 
-  getAllPersonas() {
+  getAllPersonas(): void {
     this.personaService.getAll().subscribe( res => {
       this.personas = res;
     });
@@ -44,17 +44,17 @@ export class TablaRactivaComponent implements OnInit {
     this.calcularPaginas();
   }
 
-  calcularPaginas(){
+  calcularPaginas(): void{
     this.personaService.getAllPaged(this.paginaActual.toString(), this.totalPorPagina.toString())
-    .subscribe(res => 
+    .subscribe(res =>
       {
         this.personas = res.content as Persona[];
         this.totalRegistros = res.totalElements as number;
-        //this.paginator._intl.itemsPerPageLabel = 'Registros por página:';
+        // this.paginator._intl.itemsPerPageLabel = 'Registros por página:';
       });
   }
 
-  delete(persona: Persona) {
+  delete(persona: Persona): void {
     const opcion = confirm('¿Desea eliminar este registro?');
     if (opcion === true) {
       this.personaService.delete(persona.id).subscribe(
@@ -67,7 +67,7 @@ export class TablaRactivaComponent implements OnInit {
     }
   }
 
-  emptyPersona(){
+  emptyPersona(): void{
     this.personaActual = {
       id: 0,
       nombre: '',
@@ -76,7 +76,7 @@ export class TablaRactivaComponent implements OnInit {
     };
   }
 
-  onPreUpdate(persona: Persona) {
+  onPreUpdate(persona: Persona): void {
     this.personaActual = persona;
   }
 
